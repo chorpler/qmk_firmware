@@ -21,3 +21,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define BOOTMAGIC_LITE_ROW 1
 #define BOOTMAGIC_LITE_COLUMN 2
 #define UNICODE_SELECTED_MODES UC_WINC, UC_LNX, UC_MAC
+// #define UNICODE_SELECTED_MODES UC_MAC

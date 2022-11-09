@@ -19,18 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define _BASE 0
 
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-
-[_BASE] = LAYOUT(
-    KC_F13, KC_F14, KC_F15,
-    KC_F16, KC_F17, KC_F18
-)
-
-};
-
-enum preonic_keycodes {
-  LOWER = SAFE_RANGE,
-  RAISE,
+enum scramble_keycodes {
+  NXMODE, // Next Unicode mode
   SHRUG,  // ¯\_(ツ)_/¯
   TFLIP,  // (╯°□°)╯︵ ┻━┻
   POOP,   // 💩
@@ -38,31 +28,61 @@ enum preonic_keycodes {
   STRUT   // ᕕ( ᐛ )ᕗ
 };
 
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+
+// [_BASE] = LAYOUT(
+//     KC_F13, KC_F14, KC_F15,
+//     KC_F16, KC_F17, KC_F18
+// )
+
+// [_BASE] = LAYOUT(
+//     KC_F13, DPOINT, STRUT,
+//     POOP, SHRUG, TFLIP
+// )
+
+// [_BASE] = LAYOUT(
+//     UC_M_WC, UC_M_LN, UC_M_MA,
+//     POOP, TFLIP, SHRUG
+// )
+
+// [_BASE] = LAYOUT(
+//     LCTL(KC_SPC), DPOINT, STRUT,
+//     POOP, TFLIP, SHRUG
+// )
+
+[_BASE] = LAYOUT(
+    LCTL(KC_SPC), DPOINT, STRUT,
+    UC_MOD, TFLIP, SHRUG
+)
+
+};
+
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-        case LOWER:
-          if (record->event.pressed) {
-            layer_on(_LOWER);
-            update_tri_layer(_LOWER,  _RAISE,  _ADJUST);
-          } else {
-            layer_off(_LOWER);
-            update_tri_layer(_LOWER,  _RAISE,  _ADJUST);
-          }
-          return false;
-          break;
-        case RAISE:
-          if (record->event.pressed) {
-            layer_on(_RAISE);
-            update_tri_layer(_LOWER,  _RAISE,  _ADJUST);
-          } else {
-            layer_off(_RAISE);
-            update_tri_layer(_LOWER,  _RAISE,  _ADJUST);
-          }
-          return false;
-          break;
+        // case LOWER:
+        //   if (record->event.pressed) {
+        //     layer_on(_LOWER);
+        //     update_tri_layer(_LOWER,  _RAISE,  _ADJUST);
+        //   } else {
+        //     layer_off(_LOWER);
+        //     update_tri_layer(_LOWER,  _RAISE,  _ADJUST);
+        //   }
+        //   return false;
+        //   break;
+        // case RAISE:
+        //   if (record->event.pressed) {
+        //     layer_on(_RAISE);
+        //     update_tri_layer(_LOWER,  _RAISE,  _ADJUST);
+        //   } else {
+        //     layer_off(_RAISE);
+        //     update_tri_layer(_LOWER,  _RAISE,  _ADJUST);
+        //   }
+        //   return false;
+        //   break;
         case SHRUG:
           if (record->event.pressed) {
+            // set_unicode_input_mode(UC_MAC);
             send_unicode_string("¯\\_(ツ)_/¯");
           }
           return false;
@@ -70,23 +90,59 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case TFLIP:
           if (record->event.pressed) {
             send_unicode_string("(╯°□°)╯︵ ┻━┻");
+            // set_unicode_input_mode(UC_MAC);
+            // send_unicode_string("(╯°□°)╯︵ ┻━┻");
+            // send_unicode_string("(╯◦□◦)╯︵ ┻━┻");
+            // send_unicode_string("(╯⍜□⍜)╯︵ ┻━┻");
+            // send_unicode_string("(╯⊗□⊗)╯︵ ┻━┻");
+            // send_unicode_string("(╯●□●)╯︵ ┻━┻");
+            // send_unicode_string("(╯◍□◍)╯︵ ┻━┻");
+            // send_unicode_string("(╯⊙□⊙)╯︵ ┻━┻");
+            // send_unicode_string("(╯");
+            // _delay_ms(30);
+            // send_unicode_string("°");
+            // send_unicode_string("◦");
+            // send_unicode_string("○");
+            // send_unicode_string("⍜");
+            // send_unicode_string("°");
+            // send_unicode_string("⊙");
+            // _delay_ms(30);
+            // send_unicode_string("□");
+            // _delay_ms(30);
+            // send_unicode_string("⊙");
+            // _delay_ms(30);
+            // send_unicode_string("）╯︵ ┻━┻");
           }
           return false;
           break;
         case POOP:
           if (record->event.pressed) {
+            // set_unicode_input_mode(UC_MAC);
             send_unicode_string("💩");
           }
           return false;
           break;
         case DPOINT:
           if (record->event.pressed) {
+            // set_unicode_input_mode(UC_MAC);
             send_unicode_string("(ಠ_ಠ)");
+            // send_unicode_string("(ರ_ರ)");
+            // send_unicode_string("(");
+            // _delay_ms(30);
+            // // send_string("ಠ");
+            // send_unicode_string("ರ");
+            // _delay_ms(30);
+            // send_unicode_string("_");
+            // _delay_ms(30);
+            // send_string("ರ");
+            // _delay_ms(30);
+            // send_unicode_string(")");
           }
           return false;
           break;
         case STRUT:
           if (record->event.pressed) {
+            // set_unicode_input_mode(UC_MAC);
             send_unicode_string("ᕕ( ᐛ )ᕗ");
           }
           return false;
